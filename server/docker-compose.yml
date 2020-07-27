@@ -1,0 +1,11 @@
+version: "3"
+services:
+  recordings-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DATABASE: "posts"
+    ports:
+      - "5432:5432"

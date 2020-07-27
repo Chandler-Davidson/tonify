@@ -1,17 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { Switch, Route, Router, RouteComponentProps } from 'react-router-dom';
 import './App.css';
-import { Keyboard } from './features/keyboard/Keyboard';
+import logo from './logo.svg';
+import { KeyboardPage } from './pages/keyboardPage';
+import { PlayerPage } from './pages/player';
 
-function App() {
+function App({ history }: RouteComponentProps) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Keyboard />
-      </header>
-    </div>
+    <Router history={history}>
+
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+
+          <Switch>
+            <Route path="/:id?">
+              <KeyboardPage />
+            </Route>
+          </Switch>
+
+        </header>
+      </div >
+    </Router>
+
+
   );
 }
 
