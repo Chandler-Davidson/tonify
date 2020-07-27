@@ -14,7 +14,7 @@ services:
     depends_on:
       - recordings-db
     ports:
-      - "4000:4000"
+      - "4000:3000"
   web-app:
     build: ./client
     ports:
