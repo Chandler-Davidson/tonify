@@ -9,3 +9,13 @@ services:
       POSTGRES_DATABASE: "posts"
     ports:
       - "5432:5432"
+  recordings-service:
+    build: ./server
+    depends_on:
+      - recordings-db
+    ports:
+      - "4000:4000"
+  web-app:
+    build: ./client
+    ports:
+      - "5000:5000"

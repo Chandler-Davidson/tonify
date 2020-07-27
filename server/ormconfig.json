@@ -1,6 +1,6 @@
 {
   "type": "postgres",
-  "host": "localhost",
+  "host": "recordings-db",
   "port": 5432,
   "username": "admin",
   "password": "password",

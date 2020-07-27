@@ -118,19 +118,19 @@ export const saveRecording = (): AppThunk => async (dispatch, getState) => {
     return;
 
   const response = await axios.post(
-    'http://localhost:3000/recordings/',
+    `${window.location.origin}:4000/recordings`,
     { notes: recording.notes });
 
   const id = response.data;
 
   dispatch(toggleIsSaved(id));
 
-  window.history.pushState('', '', `http://localhost:3001/${id}`);
+  window.history.pushState('', '', `${window.location.origin}/${id}`);
 };
 
 export const fetchRecording = (songId: string): AppThunk => async (dispatch) => {
   const response = await axios.get(
-    `http://localhost:3000/recordings/${songId}`);
+    `${window.location.origin}:4000/recordings/${songId}`);
 
   const recording = response.data;
 
