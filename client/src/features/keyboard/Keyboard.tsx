@@ -62,9 +62,10 @@ export function Keyboard({ songId }: Props) {
         </button>
       </div>
       <div className={styles.row}>
-        {tones.map(t => (
+        {tones.map((t, i) => (
           <Key
             key={t}
+            index={i}
             tone={t}
             onAttack={() => dispatch(startNote(t))}
             onRelease={() => dispatch(endNote(t))} />))}
