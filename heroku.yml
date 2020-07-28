@@ -1,0 +1,13 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+
+build:
+  docker:
+    server: server/dockerfile
+    client: client/dockerfile
+
+run:
+  server: npm run start:prod
+  client: npm run serve
