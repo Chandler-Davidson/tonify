@@ -28,3 +28,4 @@ function App({ history }: RouteComponentProps) {
 }
 
 export default App;
+

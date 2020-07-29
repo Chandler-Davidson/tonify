@@ -6,6 +6,7 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { MemoryRouter, Route, BrowserRouter } from 'react-router-dom';
+import Axios from 'axios';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -22,3 +23,7 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// Configure Axios to only request json to allow the development proxy
+// to handle the request.
+Axios.defaults.headers['Accept'] = 'application/json';

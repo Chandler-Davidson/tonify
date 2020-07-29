@@ -3,7 +3,7 @@ import { RecordingsService } from './recordings.service';
 import { Recording } from './recording.entity';
 import { SaveRecordingDto } from './dto/save-recording-dto';
 
-@Controller('recordings')
+@Controller('api/recordings')
 export class RecordingsController {
   constructor(private readonly recordingsService: RecordingsService) { }
 

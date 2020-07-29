@@ -118,7 +118,7 @@ export const saveRecording = (): AppThunk => async (dispatch, getState) => {
     return;
 
   const response = await axios.post(
-    `${window.location.origin}:4000/recordings`,
+    'api/recordings',
     { notes: recording.notes });
 
   const id = response.data;
@@ -126,11 +126,10 @@ export const saveRecording = (): AppThunk => async (dispatch, getState) => {
   dispatch(toggleIsSaved(id));
 
   window.history.pushState('', '', `${window.location.origin}/${id}`);
-};
+}
 
 export const fetchRecording = (songId: string): AppThunk => async (dispatch) => {
-  const response = await axios.get(
-    `${window.location.origin}:4000/recordings/${songId}`);
+  const response = await axios.get(`api/recordings/${songId}`);
 
   const recording = response.data;
 
