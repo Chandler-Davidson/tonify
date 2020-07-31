@@ -1,21 +1,29 @@
 version: "3"
+
+volumes:
+  static_site:
+
 services:
-  recordings-db:
+  db:
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "password"
-      POSTGRES_DATABASE: "posts"
+      POSTGRES_DATABASE: "recordings"
     ports:
       - "5432:5432"
-  recordings-service:
+
+  service:
     build: ./server
     depends_on:
-      - recordings-db
+      - db
     ports:
       - "4000:3000"
-  web-app:
+    volumes:
+      - static_site:/app/public:ro
+
+  website:
     build: ./client
-    ports:
-      - "5000:5000"
+    volumes:
+      - static_site:/app/build:rw
