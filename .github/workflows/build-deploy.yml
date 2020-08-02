@@ -34,3 +34,4 @@ jobs:
         registry: docker.pkg.github.com
         path: client/
         tags: latest
+        build_args: name=client
