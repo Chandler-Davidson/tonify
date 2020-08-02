@@ -34,4 +34,4 @@ jobs:
         registry: docker.pkg.github.com
         path: client/
         tags: latest
-        build_args: name=client
+        labels: owner=chandler-davidson,repo_name=tonify,image_name=client
