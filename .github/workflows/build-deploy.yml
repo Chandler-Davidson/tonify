@@ -28,10 +28,9 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v1
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: chandler-davidson/tonify
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
+        repository: chandler-davidson/tonify/client
         path: client/
-        tags: latest
-        labels: owner=chandler-davidson,repo_name=tonify,image_name=client
+        tags_with_ref: true
