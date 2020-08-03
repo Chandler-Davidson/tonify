@@ -47,11 +47,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Copy certs
+        env: 
+          DOCKER_HOST: ${{ DOCKER_TARGET }}
         run: |
-          mkdir -p ${{ secrets.DOCKER_CERT_PATH }}
-          cp $DOCKER_CA $DOCKER_CERT_PATH/ca.pem
-          cp $DOCKER_CERT $DOCKER_CERT_PATH/cert.pem
-          cp $DOCKER_KEY $DOCKER_CERT_PATH/key.pem
+          mkdir -p .docker
+          cp $DOCKER_CA .docker/ca.pem
+          cp $DOCKER_CERT .docker/cert.pem
+          cp $DOCKER_KEY .docker/key.pem
           
       - name: Build and run services
         run: |
