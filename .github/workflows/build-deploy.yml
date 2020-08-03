@@ -43,3 +43,18 @@ jobs:
         repository: chandler-davidson/tonify/tonify-server
         path: server/
         tag_with_ref: true
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy certs
+        run: |
+          mkdir -p ${{ secrets.DOCKER_CERT_PATH }}
+          cp $DOCKER_CA $DOCKER_CERT_PATH/ca.pem
+          cp $DOCKER_CERT $DOCKER_CERT_PATH/cert.pem
+          cp $DOCKER_KEY $DOCKER_CERT_PATH/key.pem
+          
+      - name: Build and run services
+        run: |
+          docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+          docker-compose pull
+          docker-compose up -d
