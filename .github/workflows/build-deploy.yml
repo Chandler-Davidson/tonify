@@ -21,16 +21,25 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build and push Docker images
+    - name: Build and push client image
       uses: docker/build-push-action@v1
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: chandler-davidson/tonify/client
+        repository: chandler-davidson/tonify/tonify-client
         path: client/
+        tag_with_ref: true
+        
+    - name: Build and push server image
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: chandler-davidson/tonify/tonify-server
+        path: server/
         tag_with_ref: true
