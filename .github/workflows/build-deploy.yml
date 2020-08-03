@@ -43,7 +43,9 @@ jobs:
         repository: chandler-davidson/tonify/tonify-server
         path: server/
         tag_with_ref: true
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Copy certs
