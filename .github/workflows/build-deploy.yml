@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Copy certs
         env: 
-          DOCKER_HOST: ${{ DOCKER_TARGET }}
+          DOCKER_HOST: $DOCKER_TARGET
         run: |
           mkdir -p .docker
           cp $DOCKER_CA .docker/ca.pem
