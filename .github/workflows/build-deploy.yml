@@ -53,9 +53,9 @@ jobs:
           DOCKER_HOST: $DOCKER_TARGET
         run: |
           mkdir -p .docker
-          cp $DOCKER_CA .docker/ca.pem
-          cp $DOCKER_CERT .docker/cert.pem
-          cp $DOCKER_KEY .docker/key.pem
+          cp ${{ secrets.DOCKER_CA }} .docker/ca.pem
+          cp ${{ secrets.DOCKER_CERT }} .docker/cert.pem
+          cp ${{ secrets.DOCKER_KEY }} .docker/key.pem
           
       - name: Build and run services
         run: |
