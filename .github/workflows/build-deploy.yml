@@ -51,11 +51,12 @@ jobs:
       - name: Copy certs
         env: 
           DOCKER_HOST: $DOCKER_TARGET
+            
         run: |
           mkdir -p .docker
-          cp ${{ secrets.DOCKER_CA }} .docker/ca.pem
-          cp ${{ secrets.DOCKER_CERT }} .docker/cert.pem
-          cp ${{ secrets.DOCKER_KEY }} .docker/key.pem
+          cp "${{ secrets.DOCKER_CA }}" .docker/ca.pem
+          cp "${{ secrets.DOCKER_CERT }}" .docker/cert.pem
+          cp "${{ secrets.DOCKER_KEY }}" .docker/key.pem
           
       - name: Build and run services
         run: |
