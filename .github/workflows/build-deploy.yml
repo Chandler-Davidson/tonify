@@ -44,22 +44,18 @@ jobs:
         path: server/
         tag_with_ref: true
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Copy certs
-        env: 
-          DOCKER_HOST: $DOCKER_TARGET
-            
-        run: |
-          mkdir -p .docker
-          echo "${{ secrets.DOCKER_CA }}" .docker/ca.pem
-          echo "${{ secrets.DOCKER_CERT }}" .docker/cert.pem
-          echo "${{ secrets.DOCKER_KEY }}" .docker/key.pem
-          
-      - name: Build and run services
-        run: |
-          docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-          docker-compose pull
-          docker-compose up -d
+    - name: Copy certs
+      env: 
+        DOCKER_HOST: $DOCKER_TARGET
+
+      run: |
+        mkdir -p .docker
+        echo "${{ secrets.DOCKER_CA }}" .docker/ca.pem
+        echo "${{ secrets.DOCKER_CERT }}" .docker/cert.pem
+        echo "${{ secrets.DOCKER_KEY }}" .docker/key.pem
+
+    - name: Build and run services
+      run: |
+        docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+        docker-compose pull
+        docker-compose up -d
